@@ -11,7 +11,7 @@ emp_router = APIRouter()
 templates = Jinja2Templates(directory='views/templates')
 
 # HTML 관련 뷰의 홈 라우트
-@emp_router.get('/emp', response_class=HTMLResponse)
+@emp_router.get('/', response_class=HTMLResponse)
 async def emp(req: Request):
     return templates.TemplateResponse('emp/emp.html', {'request': req})
 
