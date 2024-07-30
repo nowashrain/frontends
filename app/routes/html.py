@@ -61,3 +61,10 @@ async def joinfrm(req: Request):
 async def semantic(req: Request):
     return templates.TemplateResponse('html/09semantic.html', {'request': req})
 
+@html_router.get('/project1')
+async def semantic(req: Request):
+    return templates.TemplateResponse('html/10project1.html', {'request': req})
+
+@html_router.get('/project2')
+async def semantic(req: Request):
+    return templates.TemplateResponse('html/09semantic.html', {'request': req})
