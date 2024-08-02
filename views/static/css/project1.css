@@ -11,32 +11,62 @@ body {
 }
 
 .header {
-    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
     border-bottom: 2px solid #ddd;
-    position: relative;
+    background-color: white;
+    position: relative; /* 추가 */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
 }
 
 .header .logo {
     font-size: 24px;
     font-weight: bold;
-    background-color: #333;
+    background-color: #363636;
     color: white;
     padding: 20px 40px; /* 로고 배경 너비 축소 */
     display: inline-block;
 }
 
 .nav-links {
+    display: flex;
+    align-items: center; /* 추가 */
+    margin-left: 20px;
     position: absolute;
-    right: 20px;
-    top: 20px;
+    left: 160px;
+    bottom: 20px;
 }
 
 .nav-links a {
+    margin-left: 5px; /* 수정 */
+    text-decoration: none;
+    color: #363636;
+}
+
+.nav-links p {
+    margin: 0 5px; /* 수정 */
+    color: #363636;
+}
+
+
+.nav-links2 {
+    position: absolute; /* 추가 */
+    right: 20px; /* 추가 */
+    top: 20px; /* 추가 */
+}
+
+.nav-links2 a {
     margin-left: 15px;
     text-decoration: none;
-    color: #333;
+    color: #363636;
 }
+
 
 .search-bar {
     display: flex;
