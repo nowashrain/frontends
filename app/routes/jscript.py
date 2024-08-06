@@ -30,3 +30,6 @@ async def operator(req: Request):
 async def condition(req: Request):
     return templates.TemplateResponse('js/04condition.html', {'request': req})
 
+@jscript_router.get('/loop')
+async def loop(req: Request):
+    return templates.TemplateResponse('js/05loop.html', {'request': req})
