@@ -49,3 +49,15 @@ async def fucntion(req: Request):
 @jscript_router.get('/callback')
 async def callback(req: Request):
     return templates.TemplateResponse('js/09callback.html', {'request': req})
+
+@jscript_router.get('/except')
+async def exc(req: Request):
+    return templates.TemplateResponse('js/10except.html', {'request': req})
+
+@jscript_router.get('/BOM')
+async def BOM(req: Request):
+    return templates.TemplateResponse('js/11BOM.html', {'request': req})
+
+@jscript_router.get('/DOM')
+async def DOM(req: Request):
+    return templates.TemplateResponse('js/12DOM.html', {'request': req})
