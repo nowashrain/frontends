@@ -270,6 +270,162 @@
 
 
 
+    <h2>우편번호 검색</h2>
+    <div>
+        <select id="sido" onchange=""></select>
+        <select id="gugun" onchange=""></select>
+        <select id="dong" onchange=""></select>
+    </div>
+
+
+
+
+    <script>
+        let sidodata = ['서울특별시','경기도','인천광역시',
+            '부산광역시','제주자치도'];
+        let gugundata = [
+            ['강남구', '서초구', '종로구', '송파구'],
+            ['과천시', '광명시', '성남분당구'],
+            ['연수구'],
+            ['부산진구'],
+            ['서귀포시']
+        ];
+        let dongdata = [
+            [['논현동','대치동','삼성동'], ['반포동','방배동','양재동'],['광희동','명동','충무로'],['가락동','석촌동']],
+            [['과천동'],['광명동'],['대장동']],
+            [['연수동']],
+            [['개금동','가야동']],
+            [['강정동']]
+        ];
+
+        let sido = document.querySelector('#sido');
+        let gugun = document.querySelector('#gugun');
+        let dong = document.querySelector('#dong');
+
+        // let getSido = () => {
+        //     // 기본 옵션 추가
+        //     let opt = document.createElement('option');
+        //     let txt = document.createTextNode('광역시');
+        //     opt.appendChild(txt);
+        //     sido.appendChild(opt);
+        //
+        //     // 광역시 목록
+        //     for (let i=0; i< sidodata.length; i++){
+        //         let opt = document.createElement('option');
+        //         let txt = document.createTextNode(sidodata[i]);
+        //         opt.appendChild(txt);
+        //         opt.value = sidodata[i];  // 옵션의 value를 시/도 이름으로 설정
+        //         sido.appendChild(opt);
+        //     }
+        // };
+        //
+        // let getGugun = () => {
+        //     // 타이틀
+        //     let opt = document.createElement('option');
+        //     let txt = document.createTextNode('시/군/구');
+        //     opt.appendChild(txt);
+        //     gugun.appendChild(opt);
+        //
+        //     for (let i=0; i< gugundata.length; i++){
+        //         let opt = document.createElement('option');
+        //         let txt = document.createTextNode(gugundata[i]);
+        //         opt.appendChild(txt);
+        //         opt.value = gugundata[i];
+        //         gugun.appendChild(opt);
+        //     }
+        // };
+        //
+        // let getDong = () => {
+        //     // 타이틀
+        //     let opt = document.createElement('option');
+        //     let txt = document.createTextNode('읍/면/동');
+        //     opt.appendChild(txt);
+        //     dong.appendChild(opt);
+        //
+        //     for (let i=0; i< dongdata.length; i++){
+        //         let opt = document.createElement('option');
+        //         let txt = document.createTextNode(dongdata[i]);
+        //         opt.appendChild(txt);
+        //         opt.value = dongdata[i];
+        //         dong.appendChild(opt);
+        //     }
+        // };
+        //
+        // getSido();
+        // getGugun();
+        // getDong();
+
+        let getSido = () => {
+            sido.innerHTML = '';  // 기존 옵션을 초기화
+            let defaultOpt = document.createElement('option');
+            defaultOpt.textContent = '시/도를 선택하세요';
+            defaultOpt.value = '';
+            sido.appendChild(defaultOpt);
+
+            for (let i = 0; i < sidodata.length; i++) {
+                let opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = sidodata[i];
+                sido.appendChild(opt);
+            }
+        };
+
+        let getGugun = () => {
+            gugun.innerHTML = '';  // 기존 옵션을 초기화
+            let defaultOpt = document.createElement('option');
+            defaultOpt.textContent = '구/군을 선택하세요';
+            defaultOpt.value = '';
+            gugun.appendChild(defaultOpt);
+
+            let selectedSidoIndex = sido.value;
+            if (selectedSidoIndex !== '') {
+                let gugunList = gugundata[selectedSidoIndex];
+                for (let i = 0; i < gugunList.length; i++) {
+                    let opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = gugunList[i];
+                    gugun.appendChild(opt);
+                }
+            }
+        };
+
+        let getDong = () => {
+            dong.innerHTML = '';  // 기존 옵션을 초기화
+            let defaultOpt = document.createElement('option');
+            defaultOpt.textContent = '동을 선택하세요';
+            defaultOpt.value = '';
+            dong.appendChild(defaultOpt);
+
+            let selectedSidoIndex = sido.value;
+            let selectedGugunIndex = gugun.value;
+            if (selectedSidoIndex !== '' && selectedGugunIndex !== '') {
+                let dongList = dongdata[selectedSidoIndex][selectedGugunIndex];
+                for (let i = 0; i < dongList.length; i++) {
+                    let opt = document.createElement('option');
+                    opt.value = dongList[i];
+                    opt.textContent = dongList[i];
+                    dong.appendChild(opt);
+                }
+            }
+        };
+
+        sido.addEventListener('change', () => {
+            getGugun();
+            getDong();  // 구/군 선택이 변경될 때 동 목록도 초기화
+        });
+
+        gugun.addEventListener('change', () => {
+            getDong();
+        });
+
+        getSido();
+    </script>
+
+
+
+
+
+
 
 
 
