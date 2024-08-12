@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>우편번호 검색</title>
+
+    <style>
+        select {padding: 5px;}
+    </style>
 </head>
 <body>
 
@@ -11,6 +15,7 @@
     <select id="sido" onchange="getGugun()"></select>
     <select id="gugun" onchange="getDong()"></select>
     <select id="dong" onchange="getAddress()"></select>
+    <p id="myaddr"></p>
 </div>
 
 
@@ -145,6 +150,31 @@
         }
     };
 
+
+    // let getAddress = () => {
+    //     if(dong.selectedIndex > 0) {
+    //         let result = `선택한 주소 :
+    //         ${sido.value} ${gugun.value} ${dong.value}`;
+    //         let myaddr = document.querySelector('#myaddr');
+    //         myaddr.textContent = result;
+    //     }
+    // }
+    let getAddress = () => {
+        if(dong.selectedIndex > 0) {
+            // 선택된 시/도, 구/군, 동의 인덱스를 가져와 실제 이름을 추출
+            let selectedSido = sidodata[sido.value];
+            let selectedGugun = gugundata[sido.value][gugun.value];
+            let selectedDong = dong.value;
+
+            // 선택된 주소를 문자열로 구성
+            let result = `선택한 주소: ${selectedSido} ${selectedGugun} ${selectedDong}`;
+            let myaddr = document.querySelector('#myaddr');
+            // 결과를 myaddr 요소에 표시
+            myaddr.textContent = result;
+        }
+    }
+
+
     sido.addEventListener('change', () => {
         getGugun();
         getDong();  // 구/군 선택이 변경될 때 동 목록도 초기화
@@ -155,6 +185,11 @@
     });
 
     getSido();
+
+    //기존 시군구 항목 제거
+    // while (gugun.firstChild) {
+    //     gugun.removeChild(gugun.firstChild);
+    // }
 </script>
 
 </body>
